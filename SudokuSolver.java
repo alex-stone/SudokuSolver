@@ -38,7 +38,8 @@ public class SudokuSolver {
 
 
     /**
-     * Brute Force Method of Solving
+     * Brute Force Method of Solving, note: Consider seperating out solving methods into separate classes, such as
+     * BruteForceSolver, HumanStrategySolver, etc...
      */
     public boolean selectNumber(int row, int col) {
 

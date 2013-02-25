@@ -10,7 +10,12 @@ public class SudokuBoard() {
      * must be between 0-9, with 0 representing an unselected or blank value.
      */
     private int [][] matrix;
-   
+  
+    /**
+     * Saves the original input matrix.
+     */
+    private int [][] originalMatrix;
+ 
     /**
      * Represents the selected values for each value in each block. The 3x3 blocks are numbered left to right,
      * and top to bottom, starting from the top left block, which is #0. The numbers 0-8, represent the values 
@@ -46,6 +51,31 @@ public class SudokuBoard() {
 
 	// Test if the array is 9x9
 
+	originalMatrix = array;
+	
+	matrix = new int[9][9];
+	rowArray = new boolean[9][9];
+	colArray = new boolean[9][9];
+	blockArray = new boolean[9][9];
+
+	
+        // Iterate through each position, and add that info to each of the appropriate
+	// structures.
+	for(int row = 0; row < 9; row++) {
+	    for(int col = 0; col < 9; col++) {
+	        matrix = originalMatrix[row][col];
+	
+		// test if the value is set to a number 
+		if(originalMatrix[row][col] != 0) {
+		   rowArray[row][originalMatrix[row][col] - 1] = true;
+
+		   blockArray[getSquareNum(row, col)][originalMatrix[row][col] - 1] = true; 
+		
+	 	   colArray[col][originalMatrix[row][col] - 1] = true;
+		}
+	    }
+        }	
+	
 
     }
 
@@ -74,5 +104,12 @@ public class SudokuBoard() {
 
     }
 
+
+    /**
+     * Helper Function to return which square a position is in.
+     */	
+    private static int getSquareNum(int row, int col) {
+	return [(col/3) + (row/3)*3];
+    }
      
 }
